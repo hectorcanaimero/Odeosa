@@ -1,0 +1,24 @@
+<section id="Home" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Nome Produto: {{ coaching.name }}</h4>
+                <table mdbTable striped="true">
+                    <tbody>
+                        <tr mdbTableCol>
+                            <th scope="row">Preço</th>
+                            <td>{{ coaching.price }}</td>
+                        </tr>
+                        <tr mdbTableCol>
+                            <th scope="row">Quantidade Vendas</th>
+                            <td>{{ coaching.total_sales }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h4>Nome Produto: {{ consulta.name }}</h4>
+            </div>
+        </div>
+    </div>
+</section>
