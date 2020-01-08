@@ -1,1 +1,27 @@
-<router-outlet></router-outlet>
+<section id="Home">
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+        <mdb-navbar-brand><a class="font-odeosa navbar-brand font-weight-bold text-uppercase" [routerLink]="['']">
+            Odeosa</a></mdb-navbar-brand>
+        <links>
+            <ul class="navbar-nav mr-auto pr-5">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/consulta']">Consulta</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/coaching']">Coaching</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect (click)="exit()">Sair Sistema</a>
+                </li>
+            </ul>
+        </links>
+    </mdb-navbar>
+    <div class="container">
+        <div class="row  justify-content-center">
+            <div class="col-md-10">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</section>
+

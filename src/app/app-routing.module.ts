@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChartComponent } from './shared/helper/chart/chart.component';
+import { ConsultaComponent } from './shared/helper/consulta/consulta.component';
 
 
 const routes: Routes = [
@@ -11,8 +13,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/home/home.module').then(mod => mod.HomeModule)
-  }
+      import('./pages/home/home.module').then(mod => mod.HomeModule),
+  },
+  {path: 'coaching', component: ChartComponent},
+  {path: 'consulta', component: ConsultaComponent}
 ];
 
 @NgModule({

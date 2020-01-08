@@ -1,0 +1,87 @@
+<div class="my-5" [ngClass]="{'d-none': orders.length > 0}">
+    <div class="d-flex justify-content-center my-5">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+<div class="my-5" [ngClass]="{'d-none': orders.length < 1}">
+    <h3 class="font-weight-bold mb-4">
+        {{ coaching.name }}
+        <span class="float-right mt-n3">
+            <button type="button" mdbBtn color="secondary" outline="true" 
+                mdbWavesEffect (click)="export()">
+                Exportar XLS
+            </button>
+        </span>
+    </h3>
+</div>
+<table mdbTable striped="true" small="true" #tableEl="mdbTable" [ngClass]="{'d-none': orders.length < 1}">
+    <thead>
+        <tr mdbTableCol>
+            <th *ngFor="let head of head1; let i = index" aria-controls="tableSortExample" 
+                scope="col" [mdbTableSort]="orders" [sortBy]="head1[i]">
+                {{head | titlecase}}
+                <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr mdbTableCol *ngFor="let o of orders; let i = index">
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                {{ o.data | date: 'dd/MM/yyyy' }}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                <p class="mb-1 text-uppercase">
+                    <span class="badge" [ngClass]="{
+                        'badge-success': o.status === 'completed',
+                        'badge-primary': o.status === 'processing',
+                        'badge-danger': o.status === 'failed',
+                        'badge-secondary': o.status === 'refunded',
+                        'badge-warning': o.status === 'pendind'
+                    }">{{ o.status }}</span>
+                </p>
+            </td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                {{ o.subtotal | currency: "R$":"symbol":"1.2-2":"pt" }}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                {{ o.tax | currency: "R$":"symbol":"1.2-2":"pt" }}</td>
+            <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                {{ o.total | currency: "R$":"symbol":"1.2-2":"pt" }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr mdbTableCol>
+            <th scope="row" colspan="2" class="text-right">Total</th>
+            <th scope="row">{{ sumSubTotal(orders) | currency: "R$":"symbol":"1.2-2":"pt" }}</th>
+            <th scope="row">{{ sumTax(orders) | currency: "R$":"symbol":"1.2-2":"pt" }}</th>
+            <th scope="row"> {{ sumTotal(orders) | currency: "R$":"symbol":"1.2-2":"pt" }}</th>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="orders">
+                </mdb-table-pagination>
+            </td>
+        </tr>
+    </tfoot>
+</table>

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HelperModule } from '../../shared/helper/helper.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
   imports: [
     MDBBootstrapModule,
     CommonModule,
+    HelperModule,
     HomeRoutingModule
   ]
 })

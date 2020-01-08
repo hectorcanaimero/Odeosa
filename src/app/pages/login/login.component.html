@@ -1,11 +1,18 @@
+<ngx-spinner bdOpacity = 0.9 bdColor = "#333" size = "medium"
+    color = "#fff" type = "ball-8bits" [fullScreen] = "true" >
+    <p style="color: white" > Carregando... </p>
+</ngx-spinner>
 <section id="Acesso" class="py-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-5">
+                <h1 class="titulo font-odeosa">
+                    odeosa
+                </h1>
                 <mdb-card>
                     <mdb-card-header>
                         <mdb-card-title>
-                            <h4 class="text-center mt-1 mb-0">Acesso</h4>
+                            <h5 class="text-center mb-0 font-weight-bold text-uppercase text-muted">Acesso</h5>
                         </mdb-card-title>
                     </mdb-card-header>
                     <mdb-card-body>
@@ -23,7 +30,8 @@
                     </mdb-card-body>
                     <mdb-card-footer>
                         <div class="text-center">
-                            <button type="button" mdbBtn color="primary" mdbWavesEffect (click)="acessar()">
+                            <button type="button" mdbBtn color="primary" mdbWavesEffect (click)="acessar()"
+                                [disabled]="!acesso.email || !acesso.senha">
                                 Acessar!
                             </button>
                         </div>
